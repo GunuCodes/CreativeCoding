@@ -1,0 +1,34 @@
+function setup() {
+  createCanvas(400, 400);
+  noSmooth();
+}
+
+function draw() {
+  background(0);
+  scale(20); 
+  noStroke();
+  
+  let green = color(0, 255, 0);
+  let black = color(0);
+  let white = color(255);
+  
+  fill(green);
+  rect(8, 2, 1, 1); 
+  rect(11, 2, 1, 1); 
+  rect(7, 3, 7, 1); 
+  rect(8, 4, 5, 1); 
+  rect(9, 5, 3, 1); 
+  rect(8, 6, 5, 1); 
+  rect(7, 7, 7, 5); 
+  rect(6, 8, 1, 1); 
+  rect(14, 8, 1, 1); 
+  rect(8, 12, 1, 1); 
+  rect(12, 12, 1, 1); 
+  
+  fill(white);
+  rect(9, 4, 1, 1); 
+  rect(11, 4, 1, 1); 
+  fill(black);
+  rect(9, 4, 1, 1); 
+  rect(11, 4, 1, 1);
+}
