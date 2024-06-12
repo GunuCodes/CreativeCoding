@@ -1,0 +1,39 @@
+let bg;
+let phrase = "Welcome to Bathspa";
+let currentLetterIndex = 0;
+let letters = []; // Array to store placed letters
+
+function preload(){
+  bg = loadImage('background3.gif');
+}
+
+function setup() {
+  createCanvas(400, 400);
+  textSize(24);
+  fill(255);
+  stroke(0);
+  strokeWeight(4);
+}
+
+function draw() {
+  background(bg);
+
+  // Display the current letter at the mouse position
+  text(phrase[currentLetterIndex], mouseX, mouseY);
+
+  // Display all placed letters
+  for (let i = 0; i < letters.length; i++) {
+    text(letters[i].letter, letters[i].x, letters[i].y);
+  }
+}
+
+function mouseClicked() {
+  // Check if the mouse is within the canvas boundaries
+  if (mouseX >= 0 && mouseX <= width && mouseY >= 0 && mouseY <= height) {
+    // Add the current letter to the array
+    letters.push({ x: mouseX, y: mouseY, letter: phrase[currentLetterIndex] });
+
+    // Move to the next letter
+    currentLetterIndex = (currentLetterIndex + 1) % phrase.length;
+  }
+}
