@@ -1,0 +1,38 @@
+let trail = [];
+let isDrawing = false;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  background(255);
+}
+
+function draw() {
+  background(255, 10); 
+  
+  if (isDrawing) {
+    trail.push(createVector(mouseX, mouseY));
+  }
+  
+  noFill();
+  beginShape();
+  for (let i = 1; i < trail.length; i++) {
+    let alpha = map(i, 0, trail.length, 0, 255);
+    let weight = map(i, 0, trail.length, 1, 10); 
+    stroke(0, alpha);
+    strokeWeight(weight);
+    line(trail[i-1].x, trail[i-1].y, trail[i].x, trail[i].y);
+  }
+  endShape();
+  
+  if (trail.length > 200) { 
+    trail.splice(0, 1);
+  }
+}
+
+function mousePressed() {
+  isDrawing = true;
+}
+
+function mouseReleased() {
+  isDrawing = false;
+}
