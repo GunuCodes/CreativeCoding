@@ -1,0 +1,49 @@
+let youtubers = [
+  { name: "MrBeast", subscribers: 279000000 },
+  { name: "T-Series", subscribers: 267000000 },
+  { name: "Cocomelon - Nursery Rhymes", subscribers: 176000000 },
+  { name: "SET India", subscribers: 173000000 },
+  { name: "Kids Diana Show", subscribers: 123000000 },
+  { name: "Vlad and Niki", subscribers: 119000000 },
+  { name: "Like Nastya", subscribers: 116000000 },
+  { name: "PewDiePie", subscribers: 111000000 }
+];
+
+let barWidth = 60;
+let barHeights = [];
+let colors = [];
+
+function setup() {
+  createCanvas(800, 600);
+  colorMode(HSB, 360, 100, 100);
+  noStroke();
+
+  for (let i = 0; i < youtubers.length; i++) {
+    barHeights[i] = 0;
+
+    colors[i] = color(map(i, 0, youtubers.length - 1, 240, 0), 100, 100);
+  }
+}
+
+function draw() {
+  background(255);
+
+  let startX = 50;
+  let startY = height - 50;
+  let spacing = 15;
+  let maxSubscribers = Math.max(...youtubers.map(yt => yt.subscribers)); 
+
+  for (let i = 0; i < youtubers.length; i++) {
+    let targetHeight = map(youtubers[i].subscribers, 0, maxSubscribers, 0, height - 100);
+    barHeights[i] = lerp(barHeights[i], targetHeight, 0.05);
+
+    fill(colors[i]);
+    rect(startX, startY - barHeights[i], barWidth, barHeights[i]);
+
+    fill(0);
+    textAlign(CENTER, BOTTOM);
+    text(youtubers[i].name, startX + barWidth / 2, startY + 20);
+
+    startX += barWidth + spacing;
+  }
+}
