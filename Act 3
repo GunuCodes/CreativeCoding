@@ -1,0 +1,23 @@
+let img;
+let img1, img2, img3, img4;
+
+function preload() {
+  img = loadImage('https://i.imgur.com/05GodIr.jpeg');
+}
+
+function setup() {
+  createCanvas(800, 800);
+  
+  img1 = img.get(0, 0, img.width/2, img.height/2);
+  img2 = img.get(img.width/2, 0, img.width/2, img.height/2);
+  img3 = img.get(0, img.height/2, img.width/2, img.height/2);
+  img4 = img.get(img.width/2, img.height/2, img.width/2, img.height/2);
+  
+  image(img1, 0, 0);
+  img2.filter(POSTERIZE, 4);
+  image(img2, img.width/2, 0);
+  img3.filter(INVERT);
+  image(img3, 0, img.height/2);
+  img4.filter(THRESHOLD);
+  image(img4, img.width/2, img.height/2);
+}
